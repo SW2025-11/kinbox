@@ -1,0 +1,30 @@
+<h1>イラスト一覧</h1>
+
+<!--  検索フォーム -->
+<%= form_with url: illusts_path, method: :get, local: true do |f| %>
+  <%= f.text_field :q, value: params[:q], placeholder: "タイトル検索" %>
+  <%= f.submit "検索" %>
+<% end %>
+
+<!-- ソート -->
+<div>
+  <%= link_to "新着順", illusts_path(sort: "new") %> |
+  <%= link_to "古い順", illusts_path(sort: "old") %> |
+  <%= link_to "タイトル昇順", illusts_path(sort: "title_asc") %> |
+  <%= link_to "タイトル降順", illusts_path(sort: "title_desc") %>
+</div>
+
+<hr>
+
+<!-- イラスト一覧 -->
+<% @illusts.each do |illust| %>
+  <div style="margin-bottom: 20px;">
+    <% if illust.image.attached? %>
+      <%= image_tag illust.image.variant(resize_to_limit: [200, 200]) %>
+    <% end %>
+
+    <p><%= link_to illust.title, illust %></p>
+    <p>投稿者: <%= illust.user.name %></p>
+    <hr>
+  </div>
+<% end %>

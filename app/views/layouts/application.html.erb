@@ -7,6 +7,11 @@
     <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+<<<<<<< HEAD
+=======
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
+>>>>>>> 389bb84 (途中経過)
 
     <%= yield :head %>
 
@@ -23,6 +28,19 @@
   </head>
 
   <body>
+    <header>
+      <% if logged_in? %>
+        <p>こんにちは、<%= current_user.name %> さん</p>
+        <%= link_to "ログアウト", logout_path, method: :delete %>
+      <% else %>
+        <%= link_to "ログイン", login_path %> |
+        <%= link_to "ユーザ登録", signup_path %>
+      <% end %>
+    </header>
+
+    <main>
+       <%= yield %>
+    </main>
     <%= yield %>
   </body>
 </html>
