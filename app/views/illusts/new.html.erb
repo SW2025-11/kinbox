@@ -1,11 +1,14 @@
 <h1>新しいイラストを投稿</h1>
 
-<%= render "form", illust: @illust %>
-
 <%= form_with model: @illust, local: true do |f| %>
   <div>
-    <%= f.label :title %><br>
+    <%= f.label :title, "タイトル" %><br>
     <%= f.text_field :title %>
+  </div>
+
+  <div>
+    <%= f.label :description, "説明" %><br>
+    <%= f.text_area :description %>
   </div>
 
   <div>
@@ -17,13 +20,17 @@
     <img id="preview" style="max-width: 300px; display: none;">
   </div>
 
-  <%= f.submit %>
+  <div>
+    <%= f.submit "投稿する" %>
+  </div>
 <% end %>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const input = document.getElementById("image_upload");
   const preview = document.getElementById("preview");
+
+  if (!input) return;
 
   input.addEventListener("change", e => {
     const file = e.target.files[0];
