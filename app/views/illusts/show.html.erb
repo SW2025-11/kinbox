@@ -11,5 +11,9 @@
 <%= link_to "ダウンロード",
     rails_blob_path(@illust.image, disposition: "attachment") %> |
 <%= link_to "編集", edit_illust_path(@illust) if @illust.user == current_user %> |
-<%= link_to "削除", @illust, method: :delete, data: { confirm: "本当に削除しますか？" } if @illust.user == current_user %> |
+<%= button_to "削除",
+    illust_path(@illust),
+    method: :delete,
+    data: { confirm: "本当に削除しますか？" } %>
+
 <%= link_to "一覧へ戻る", illusts_path %>
