@@ -14,3 +14,17 @@
   right: 20px;         /* 右からの距離 */
   z-index: 1000;       /* 他の要素より前に出す */
 }
+
+.illust-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* ← 2列 */
+  gap: 30px;
+}
+
+.illust-card {
+  text-align: center;
+}
+
+.illust-wrapper {
+  padding-right: 260px; /* ← 検索欄の幅 + 余裕 */
+}
