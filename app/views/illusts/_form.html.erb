@@ -1,18 +1,27 @@
 <%= form_with model: illust, local: true do |f| %>
-  <p>
-    <%= f.label :title %><br>
+  <div>
+    <%= f.label :title, "タイトル" %><br>
     <%= f.text_field :title %>
-  </p>
+  </div>
 
-  <p>
-    <%= f.label :description %><br>
+  <div>
+    <%= f.label :description, "説明" %><br>
     <%= f.text_area :description %>
-  </p>
+  </div>
 
-  <p>
-    <%= f.label :image %><br>
-    <%= f.file_field :image %>
-  </p>
+  <div>
+    <%= f.label :image, "画像アップロード" %><br>
+    <%= f.file_field :image, accept: "image/*", id: "image_upload" %>
+  </div>
+
+  <div>
+    <% if illust.image.attached? %>
+      <p>現在の画像</p>
+      <%= image_tag illust.image, id: "preview", style: "max-width: 300px;" %>
+    <% else %>
+      <img id="preview" style="max-width: 300px; display: none;">
+    <% end %>
+  </div>
 
   <%= f.submit %>
 <% end %>

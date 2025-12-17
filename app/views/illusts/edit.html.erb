@@ -2,39 +2,5 @@
 
 <%= render "form", illust: @illust %>
 
-<%= form_with model: @illust, local: true do |f| %>
-  <div>
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
+<%= link_to "戻る", illust_path(@illust) %>
 
-  <div>
-    <%= f.label :image, "画像アップロード" %><br>
-    <%= f.file_field :image, accept: "image/*", id: "image_upload" %>
-  </div>
-
-  <div>
-    <img id="preview" style="max-width: 300px; display: none;">
-  </div>
-
-  <%= f.submit %>
-<% end %>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const input = document.getElementById("image_upload");
-  const preview = document.getElementById("preview");
-
-  input.addEventListener("change", e => {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = event => {
-      preview.src = event.target.result;
-      preview.style.display = "block";
-    };
-    reader.readAsDataURL(file);
-  });
-});
-</script>
