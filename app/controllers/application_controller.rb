@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   def authenticate_user!
     redirect_to login_path, alert: "ログインが必要です" unless logged_in?
   end
-  
+
 
   allow_browser versions: :modern
 end

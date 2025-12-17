@@ -1,6 +1,6 @@
 class IllustsController < ApplicationController
   before_action :require_login
-  before_action :set_illust, only: [:show, :edit, :update, :destroy, :favorite]
+  before_action :set_illust, only: [ :show, :edit, :update, :destroy, :favorite ]
 
   # -----------------------------
   # イラスト一覧（検索 + ソート）

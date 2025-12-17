@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  
+
   root "illusts#index"
 
   # 認証
@@ -27,17 +27,16 @@ Rails.application.routes.draw do
     member do
       get :download
     end
-    resources :favorites, only: [:create, :destroy]
+    resources :favorites, only: [ :create, :destroy ]
   end
 
   # お気に入り一覧
-  resources :favorites, only: [:index]
-  
+  resources :favorites, only: [ :index ]
+
   resources :illusts do
     member do
       get :download
       post :favorite
     end
   end
-
 end
