@@ -8,3 +8,9 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+.search-box {
+  position: fixed;     /* 画面基準で固定 */
+  top: 15px;           /* 上からの距離 */
+  right: 20px;         /* 右からの距離 */
+  z-index: 1000;       /* 他の要素より前に出す */
+}

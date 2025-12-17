@@ -6,10 +6,12 @@
 </div>
 
 <!--  検索フォーム -->
-<%= form_with url: illusts_path, method: :get, local: true do |f| %>
-  <%= f.text_field :q, value: params[:q], placeholder: "タイトルを検索" %>
-  <%= f.submit "検索" %>
-<% end %>
+<div class="search-box">
+  <%= form_with url: illusts_path, method: :get, local: true do |f| %>
+    <%= f.text_field :q, value: params[:q], placeholder: "タイトルを検索" %>
+    <%= f.submit "検索" %>
+  <% end %>
+</div>
 
 <!-- ソート -->
 <div>
