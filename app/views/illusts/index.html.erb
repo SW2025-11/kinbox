@@ -1,40 +1,46 @@
 <h1>イラスト一覧</h1>
 
-<!-- ✅ 新規投稿ボタン（追加） -->
-<div style="margin-bottom: 20px;">
-  <%= link_to "＋ 新しいイラスト投稿", new_illust_path, class: "new-illust-button" %>
+<div class="top-actions">
+  <%= link_to "＋ 新しいイラスト投稿", new_illust_path, class: "btn btn-primary" %>
+
+  <% if logged_in? %>
+    <%= link_to "★ お気に入り一覧", favorites_path, class: "btn btn-favorite" %>
+  <% end %>
 </div>
 
-<!--  検索フォーム -->
+<!-- 🔍 検索フォーム（右上固定） -->
 <div class="search-box">
   <%= form_with url: illusts_path, method: :get, local: true do |f| %>
-    <%= f.text_field :q, value: params[:q], placeholder: "タイトルを検索" %>
+    <%= f.text_field :q,
+          value: params[:q],
+          placeholder: "タイトル・説明を検索" %>
     <%= f.submit "検索" %>
   <% end %>
 </div>
 
+
 <!-- ソート -->
-<div>
-  <%= link_to "新着順", illusts_path(sort: "new") %> |
-  <%= link_to "古い順", illusts_path(sort: "old") %> |
-  <%= link_to "タイトル昇順", illusts_path(sort: "title_asc") %> |
-  <%= link_to "タイトル降順", illusts_path(sort: "title_desc") %>
+<div class="sort-links">
+  <%= link_to "新着順", illusts_path(sort: "newest", q: params[:q]) %>
+  <%= link_to "古い順", illusts_path(sort: "oldest", q: params[:q]) %>
+  <%= link_to "タイトル昇順", illusts_path(sort: "title_asc", q: params[:q]) %>
+  <%= link_to "タイトル降順", illusts_path(sort: "title_desc", q: params[:q]) %>
 </div>
 
 <hr>
 
-<!-- イラスト一覧 -->
-<div class="illust-wrapper">
-  <div class="illust-grid">
-    <% @illusts.each do |illust| %>
-      <div class="illust-card">
-        <% if illust.image.attached? %>
-          <%= image_tag illust.image.variant(resize_to_limit: [400, 400]) %>
+<div class="illust-grid">
+  <% @illusts.each do |illust| %>
+    <div class="illust-card">
+      <% if illust.image.attached? %>
+        <%= link_to illust_path(illust) do %>
+          <%= image_tag illust.image.variant(resize_to_limit: [300, 300]) %>
         <% end %>
+      <% end %>
 
-        <p><%= link_to illust.title, illust %></p>
-        <p>投稿者: <%= illust.user.name %></p>
-      </div>
-    <% end %>
-  </div>
+      <p class="illust-title"><%= link_to illust.title, illust %></p>
+      <p class="illust-user">投稿者: <%= illust.user.name %></p>
+    </div>
+  <% end %>
 </div>
+

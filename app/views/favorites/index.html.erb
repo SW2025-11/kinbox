@@ -1,0 +1,17 @@
+<h1>お気に入り一覧</h1>
+
+<%= link_to "← イラスト一覧へ戻る", illusts_path %>
+
+<hr>
+
+<div class="illust-grid">
+  <% @illusts.each do |illust| %>
+    <div class="illust-card">
+      <%= link_to illust_path(illust) do %>
+        <%= image_tag illust.image.variant(resize_to_limit: [300,300]) if illust.image.attached? %>
+      <% end %>
+
+      <p><%= illust.title %></p>
+    </div>
+  <% end %>
+</div>

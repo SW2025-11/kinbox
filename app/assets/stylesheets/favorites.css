@@ -1,0 +1,12 @@
+.favorite-button {
+  display: inline-block;
+  font-size: 20px;
+  text-decoration: none;
+  color: #888;
+  margin-bottom: 10px;
+}
+
+.favorite-button.active {
+  color: gold;
+  font-weight: bold;
+}

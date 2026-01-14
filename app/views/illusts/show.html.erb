@@ -8,12 +8,28 @@
 
 <hr>
 
+<!-- ⭐ お気に入りボタン（POSTで確実に動かす） -->
+<% if current_user %>
+  <% favorited = current_user.favorites.exists?(illust_id: @illust.id) %>
+
+  <%= button_to favorite_illust_path(@illust),
+      method: :post,
+      class: "favorite-button #{'active' if favorited}" do %>
+    <%= favorited ? "★ お気に入り解除" : "☆ お気に入りに追加" %>
+  <% end %>
+<% end %>
+
+<hr>
+
+<!-- 各種操作（そのまま残す） -->
 <%= link_to "ダウンロード",
     rails_blob_path(@illust.image, disposition: "attachment") %> |
+
 <%= link_to "編集", edit_illust_path(@illust) if @illust.user == current_user %> |
+
 <%= button_to "削除",
     illust_path(@illust),
     method: :delete,
-    data: { confirm: "本当に削除しますか？" } %>
+    data: { confirm: "本当に削除しますか？" } if @illust.user == current_user %> |
 
 <%= link_to "一覧へ戻る", illusts_path %>
