@@ -5,4 +5,3 @@ class FavoritesController < ApplicationController
     @illusts = current_user.favorited_illusts
   end
 end
-

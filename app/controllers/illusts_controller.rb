@@ -1,6 +1,6 @@
 class IllustsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_illust, only: [:show, :edit, :update, :destroy, :favorite]
+  before_action :authenticate_user!, except: [ :index, :show ]
+  before_action :set_illust, only: [ :show, :edit, :update, :destroy, :favorite ]
 
   # -----------------------------
   # 一覧（検索 + ソート）
@@ -98,5 +98,3 @@ class IllustsController < ApplicationController
     params.require(:illust).permit(:title, :description, :image)
   end
 end
-
-
