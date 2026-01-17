@@ -1,9 +1,9 @@
 name: CI
 
 on:
+  pull_request:
   push:
     branches: [ main ]
-  pull_request:
 
 jobs:
   scan_ruby:
@@ -17,9 +17,8 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
-     - name: Scan for common Rails security vulnerabilities
-       run: bin/brakeman --no-pager || true
-
+      - name: Scan for common Rails security vulnerabilities
+        run: bin/brakeman --no-pager
 
   scan_js:
     runs-on: ubuntu-latest
@@ -32,7 +31,7 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
-      - name: Scan JS dependencies
+      - name: Scan for JS vulnerabilities
         run: bin/importmap audit
 
   lint:
@@ -46,7 +45,7 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
-      - name: RuboCop
+      - name: Run RuboCop
         run: bin/rubocop -f github
 
   test:
@@ -67,11 +66,3 @@ jobs:
         env:
           RAILS_ENV: test
         run: bin/rails db:test:prepare test test:system
-
-      - name: Upload screenshots on failure
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: screenshots
-          path: tmp/screenshots
-          if-no-files-found: ignore
