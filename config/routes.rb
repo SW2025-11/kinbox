@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get "favorites/index"
   root "illusts#index"
 
   # 認証
@@ -19,5 +18,5 @@ Rails.application.routes.draw do
   end
 
   # お気に入り一覧
-  resources :favorites, only: [ :index ]
+  resources :favorites, only: [:index]
 end
