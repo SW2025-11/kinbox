@@ -41,3 +41,13 @@ production:
     username: kinbox_user
     password: <%= ENV['MYSITE_DATABASE_PASSWORD'] %>
     url: <%= ENV['DATABASE_URL'] %>
+
+  cache:
+    <<: *default
+    adapter: postgresql
+    encoding: unicode
+    pool: 5
+    database: kinbox
+    username: kinbox_user
+    password: <%= ENV['MYSITE_DATABASE_PASSWORD'] %>
+    url: <%= ENV['DATABASE_URL'] %>
