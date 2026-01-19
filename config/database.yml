@@ -13,4 +13,7 @@ test:
 
 production:
   <<: *default
-  database: storage/production.sqlite3
+  database: kinbox
+  username: kinbox_user
+  password: <%= ENV['postgresql://kinbox_user:WX1JRa65b578oHqPav9Uu3Nbt418HI29@dpg-d5jln29r0fns73d6mgag-a/kinbox'] %>
+  url: <%= ENV['DATABASE_URL'] %>
