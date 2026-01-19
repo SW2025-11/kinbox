@@ -12,8 +12,22 @@ test:
   database: storage/test.sqlite3
 
 production:
-  <<: *default
-  database: kinbox
-  username: kinbox_user
-  password: <%= ENV['postgresql://kinbox_user:WX1JRa65b578oHqPav9Uu3Nbt418HI29@dpg-d5jln29r0fns73d6mgag-a/kinbox'] %>
-  url: <%= ENV['DATABASE_URL'] %>
+  primary:
+    <<: *default
+    adapter: postgresql
+    encoding: unicode
+    pool: 5
+    database: kinbox
+    username: kinbox_user
+    password: <%= ENV['MYSITE_DATABASE_PASSWORD'] %>
+    url: <%= ENV['DATABASE_URL'] %>
+
+  cable:
+    <<: *default
+    adapter: postgresql
+    encoding: unicode
+    pool: 5
+    database: kinbox
+    username: kinbox_user
+    password: <%= ENV['MYSITE_DATABASE_PASSWORD'] %>
+    url: <%= ENV['DATABASE_URL'] %>
