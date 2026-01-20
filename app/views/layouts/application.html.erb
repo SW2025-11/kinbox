@@ -27,7 +27,7 @@
       <% if logged_in? %>
         <p>こんにちは、<%= current_user.name %> さん</p>
 
-        <!-- ✅ 正しいログアウトボタン -->
+        <!-- ✅正しいログアウトボタン -->
         <%= button_to "ログアウト", logout_path, method: :delete %>
 
       <% else %>
