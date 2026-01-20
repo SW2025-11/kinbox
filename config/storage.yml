@@ -8,10 +8,10 @@ local:
 
 r2:
   service: S3
-  access_key_id: <%= ENV.fetch("R2_ACCESS_KEY_ID") %>
-  secret_access_key: <%= ENV.fetch("R2_SECRET_ACCESS_KEY") %>
+  access_key_id: <%= ENV["R2_ACCESS_KEY_ID"] %>
+  secret_access_key: <%= ENV["R2_SECRET_ACCESS_KEY"] %>
   region: auto
-  bucket: <%= ENV.fetch("R2_BUCKET") %>
-  endpoint: <%= ENV.fetch("R2_ENDPOINT") %>
+  bucket: <%= ENV["R2_BUCKET"] %>
+  endpoint: <%= ENV["R2_ENDPOINT"] %>
   force_path_style: true
 
